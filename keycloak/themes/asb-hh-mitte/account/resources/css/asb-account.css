@@ -1,0 +1,85 @@
+:root {
+  --asb-red: #c80a14;
+  --asb-red-dark: #9e0013;
+  --asb-yellow: #ffd813;
+  --asb-text: #222222;
+  --asb-surface-muted: #f5f5f5;
+  --pf-v5-global--FontFamily--sans-serif: Arial, Helvetica, sans-serif;
+  --pf-v5-global--primary-color--100: var(--asb-red);
+  --pf-v5-global--primary-color--200: var(--asb-red-dark);
+  --pf-v5-global--link--Color: var(--asb-red);
+  --pf-v5-global--link--Color--hover: var(--asb-red-dark);
+  --pf-t--global--font--family--body: Arial, Helvetica, sans-serif;
+  --pf-t--global--color--brand--default: var(--asb-red);
+  --pf-t--global--color--brand--hover: var(--asb-red-dark);
+  --pf-t--global--color--brand--clicked: var(--asb-red-dark);
+}
+
+body {
+  color: var(--asb-text);
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--asb-surface-muted);
+}
+
+.pf-v5-c-page__header,
+.pf-v6-c-masthead {
+  border-bottom: 0.35rem solid var(--asb-yellow);
+  background: #ffffff;
+  box-shadow: 0 0.2rem 0.8rem rgb(34 34 34 / 10%);
+}
+
+.pf-v5-c-brand,
+.pf-v6-c-brand {
+  width: auto;
+  max-width: 10rem;
+  max-height: 4rem;
+}
+
+.pf-v5-c-nav__link.pf-m-current,
+.pf-v6-c-nav__link.pf-m-current {
+  color: var(--asb-red);
+  font-weight: 700;
+}
+
+.pf-v5-c-nav__link.pf-m-current::after,
+.pf-v6-c-nav__link.pf-m-current::after {
+  border-color: var(--asb-red);
+}
+
+.pf-v5-c-button.pf-m-primary,
+.pf-v6-c-button.pf-m-primary {
+  border-radius: 0.4rem;
+  color: #ffffff;
+  font-weight: 700;
+  background: var(--asb-red);
+}
+
+.pf-v5-c-button.pf-m-primary:hover,
+.pf-v5-c-button.pf-m-primary:focus,
+.pf-v6-c-button.pf-m-primary:hover,
+.pf-v6-c-button.pf-m-primary:focus {
+  background: var(--asb-red-dark);
+}
+
+.pf-v5-c-card,
+.pf-v6-c-card {
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(34 34 34 / 8%);
+}
+
+a {
+  color: var(--asb-red);
+}
+
+a:hover,
+a:focus {
+  color: var(--asb-red-dark);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 0.2rem solid var(--asb-yellow);
+  outline-offset: 0.15rem;
+}

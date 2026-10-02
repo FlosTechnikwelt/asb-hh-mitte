@@ -1,0 +1,54 @@
+{
+  "realm": "admin",
+  "displayName": "ASB HH Mitte – Administration",
+  "enabled": true,
+  "loginTheme": "asb-hh-mitte",
+  "accountTheme": "asb-hh-mitte",
+  "emailTheme": "asb-hh-mitte",
+  "internationalizationEnabled": false,
+  "supportedLocales": [
+    "de",
+    "en"
+  ],
+  "defaultLocale": "de",
+  "registrationAllowed": false,
+  "registrationEmailAsUsername": false,
+  "editUsernameAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "bruteForceProtected": true,
+  "clients": [
+    {
+      "clientId": "asb-hh-mitte-admin",
+      "name": "ASB HH Mitte – Administration",
+      "description": "OpenID-Connect-Anmeldung für ASB HH Mitte (Administration)",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${KEYCLOAK_ADMIN_CLIENT_SECRET}",
+      "serviceAccountsEnabled": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "consentRequired": false,
+      "fullScopeAllowed": false,
+      "rootUrl": "${KEYCLOAK_ADMIN_BASE_URL}",
+      "baseUrl": "${KEYCLOAK_ADMIN_BASE_URL}",
+      "redirectUris": [
+        "${KEYCLOAK_ADMIN_REDIRECT_URI}"
+      ],
+      "webOrigins": [],
+      "defaultClientScopes": [
+        "profile",
+        "email"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      }
+    }
+  ]
+}

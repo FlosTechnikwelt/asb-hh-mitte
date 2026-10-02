@@ -1,0 +1,82 @@
+{
+  "realm": "user",
+  "displayName": "ASB HH Mitte",
+  "enabled": true,
+  "loginTheme": "asb-hh-mitte",
+  "accountTheme": "asb-hh-mitte",
+  "emailTheme": "asb-hh-mitte",
+  "internationalizationEnabled": false,
+  "supportedLocales": [
+    "de",
+    "en"
+  ],
+  "defaultLocale": "de",
+  "registrationAllowed": false,
+  "registrationEmailAsUsername": false,
+  "editUsernameAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "bruteForceProtected": true,
+  "clients": [
+    {
+      "clientId": "asb-hh-mitte-user",
+      "name": "ASB HH Mitte",
+      "description": "OpenID-Connect-Anmeldung für ASB HH Mitte",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${KEYCLOAK_USER_CLIENT_SECRET}",
+      "serviceAccountsEnabled": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "consentRequired": false,
+      "fullScopeAllowed": false,
+      "rootUrl": "${KEYCLOAK_USER_BASE_URL}",
+      "baseUrl": "${KEYCLOAK_USER_BASE_URL}",
+      "redirectUris": [
+        "${KEYCLOAK_USER_REDIRECT_URI}"
+      ],
+      "webOrigins": [],
+      "defaultClientScopes": [
+        "profile",
+        "email"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      }
+    },
+    {
+      "clientId": "asb-hh-mitte-user-sync",
+      "name": "ASB HH Mitte Benutzersynchronisierung",
+      "description": "Interner Service-Account zur Synchronisierung von Benutzerkonten im User-Realm",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "${KEYCLOAK_SYNC_CLIENT_SECRET}",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "fullScopeAllowed": true
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-asb-hh-mitte-user-sync",
+      "enabled": true,
+      "serviceAccountClientId": "asb-hh-mitte-user-sync",
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "query-users",
+          "view-users"
+        ]
+      }
+    }
+  ]
+}

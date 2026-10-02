@@ -1,0 +1,111 @@
+services:
+  asb-hh-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - ENV=production
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+  asb-hh-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ENV=production
+    volumes:
+      - ./api:/var/www/api
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+
+  keycloak_db:
+    image: postgres:17-alpine
+    container_name: asb-hh-mitte-keycloak-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB_NAME:-keycloak}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER:-keycloak}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?KEYCLOAK_DB_PASSWORD must be set}
+    volumes:
+      - keycloak_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  keycloak:
+    build:
+      context: .
+      dockerfile: keycloak/Dockerfile
+    container_name: asb-hh-mitte-keycloak
+    restart: unless-stopped
+    depends_on:
+      keycloak_db:
+        condition: service_healthy
+    entrypoint: ["/opt/keycloak/bin/start-asb-keycloak.sh"]
+    command: ["start", "--import-realm"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db:5432/${KEYCLOAK_DB_NAME:-keycloak}
+      KC_DB_USERNAME: ${KEYCLOAK_DB_USER:-keycloak}
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?KEYCLOAK_DB_PASSWORD must be set}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USERNAME:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?KEYCLOAK_ADMIN_PASSWORD must be set}
+      KC_HOSTNAME: https://auth-asb-hh-mitte.de
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY_HEADERS: xforwarded
+      KC_HEALTH_ENABLED: "true"
+      KEYCLOAK_SYNC_CLIENT_SECRET: ${KEYCLOAK_SYNC_CLIENT_SECRET:?KEYCLOAK_SYNC_CLIENT_SECRET must be set}
+      KEYCLOAK_USER_CLIENT_SECRET: ${KEYCLOAK_USER_CLIENT_SECRET:?KEYCLOAK_USER_CLIENT_SECRET must be set}
+      KEYCLOAK_USER_BASE_URL: ${KEYCLOAK_USER_BASE_URL:-https://asb-hh-mitte.de}
+      KEYCLOAK_USER_REDIRECT_URI: ${KEYCLOAK_USER_REDIRECT_URI:-https://asb-hh-mitte.de/auth/callback}
+      KEYCLOAK_ADMIN_CLIENT_SECRET: ${KEYCLOAK_ADMIN_CLIENT_SECRET:?KEYCLOAK_ADMIN_CLIENT_SECRET must be set}
+      KEYCLOAK_ADMIN_BASE_URL: ${KEYCLOAK_ADMIN_BASE_URL:-https://asb-hh-mitte.de/admin}
+      KEYCLOAK_ADMIN_REDIRECT_URI: ${KEYCLOAK_ADMIN_REDIRECT_URI:-https://asb-hh-mitte.de/admin/auth/callback}
+    expose:
+      - "8080"
+      - "9000"
+
+  captcha:
+    build:
+      context: .
+      dockerfile: captcha/Dockerfile
+    container_name: asb-hh-mitte-captcha
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      CAPTCHA_PORT: 3002
+      ALTCHA_HMAC_SECRET: ${ALTCHA_HMAC_SECRET:?ALTCHA_HMAC_SECRET must be set (min. 32 chars)}
+      ALTCHA_ALLOWED_ORIGINS: ${ALTCHA_ALLOWED_ORIGINS:-https://asb-hh-mitte.de,https://payments.asb-hh-mitte.de,https://auth-asb-hh-mitte.de}
+      ALTCHA_CHALLENGE_TTL_MS: ${ALTCHA_CHALLENGE_TTL_MS:-1200000}
+      ALTCHA_COST: ${ALTCHA_COST:-5000}
+      ALTCHA_COUNTER_MIN: ${ALTCHA_COUNTER_MIN:-5000}
+      ALTCHA_COUNTER_MAX: ${ALTCHA_COUNTER_MAX:-10000}
+    expose:
+      - "3002"
+
+
+volumes:
+  db_data:
+  keycloak_postgres_data:
