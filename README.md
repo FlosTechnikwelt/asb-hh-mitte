@@ -11,7 +11,7 @@ Voraussetzung ist Docker mit Docker Compose.
 docker compose up --build -d
 ```
 
-Die Website ist anschließend unter <http://localhost> erreichbar. Wird Port 80
+Die Website ist anschließend unter <http://localhost:3097> erreichbar. Wird Port 3097
 bereits verwendet, kann ein anderer Port gesetzt werden:
 
 ```sh

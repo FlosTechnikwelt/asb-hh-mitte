@@ -6,7 +6,7 @@ services:
         GRAV_VERSION: ${GRAV_VERSION:-2.1.8}
     restart: unless-stopped
     ports:
-      - "${GRAV_PORT:-80}:80"
+      - "${GRAV_PORT:-3097}:80"
     volumes:
       - grav_accounts:/var/www/html/user/accounts
       - grav_config:/var/www/html/user/config
