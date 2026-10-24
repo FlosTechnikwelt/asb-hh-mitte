@@ -26,7 +26,7 @@ RUN apt-get update \
 COPY grav/user/ /var/www/html/user/
 COPY docker/grav-entrypoint.sh /usr/local/bin/grav-entrypoint
 
-RUN mkdir -p /var/www/html/backup /var/www/html/cache /var/www/html/logs /var/www/html/tmp \
+RUN mkdir -p /var/www/html/backup /var/www/html/cache /var/www/html/logs /var/www/html/tmp /var/www/html/user/media \
     && chown -R www-data:www-data /var/www/html \
     && chmod 0755 /usr/local/bin/grav-entrypoint
 

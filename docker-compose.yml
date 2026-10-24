@@ -11,6 +11,7 @@ services:
       - grav_accounts:/var/www/html/user/accounts
       - grav_config:/var/www/html/user/config
       - grav_data:/var/www/html/user/data
+      - grav_media:/var/www/html/user/media
       - grav_pages:/var/www/html/user/pages
       - grav_backup:/var/www/html/backup
       - grav_logs:/var/www/html/logs
@@ -25,6 +26,7 @@ volumes:
   grav_accounts:
   grav_config:
   grav_data:
+  grav_media:
   grav_pages:
   grav_backup:
   grav_logs:
