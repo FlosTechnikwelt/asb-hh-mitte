@@ -46,19 +46,42 @@
 
     <footer class="site-footer" id="kontakt">
         <div class="site-shell footer-grid">
-            <div class="footer-brand">
-                <img src="{{ url('theme://assets/images/logo-asb.svg') }}" alt="ASB Ortsverband Hamburg-Mitte e.V." width="234" height="98">
-                <strong>{{ site.title }}</strong>
-                {% if site.metadata.description %}<p>{{ site.metadata.description }}</p>{% endif %}
-            </div>
             <nav class="footer-navigation" aria-label="Fußnavigation">
-                <ul class="nav">
-                    {% for item in site.footer_navigation %}
-                        <li class="nav-item"><a href="{{ url(item.url) }}">{{ item.label }}</a></li>
-                    {% endfor %}
-                </ul>
+                <section class="footer-column" aria-labelledby="footer-navigation-heading">
+                    <h2 id="footer-navigation-heading">Navigation</h2>
+                    <ul class="nav">
+                        <li><a href="{{ home_url }}">Startseite</a></li>
+                        {% for entry in pages.children.visible %}
+                            <li><a href="{{ entry.url }}">{{ entry.menu }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+
+                <section class="footer-column" aria-labelledby="footer-contact-heading">
+                    <h2 id="footer-contact-heading">Kontakt</h2>
+                    <ul class="nav">
+                        {% for item in site.footer_navigation %}
+                            <li><a href="{{ url(item.url) }}">{{ item.label }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+
+                <section class="footer-column" aria-labelledby="footer-legal-heading">
+                    <h2 id="footer-legal-heading">Rechtliches</h2>
+                    <ul class="nav">
+                        <li><a href="{{ url('/legal/imprint') }}">Impressum</a></li>
+                        <li><a href="{{ url('/legal/datenschutz') }}">Datenschutz</a></li>
+                    </ul>
+                </section>
             </nav>
-            <small>© {{ 'now'|date('Y') }} {{ site.title }}</small>
+
+            <div class="footer-contact">
+                <address>
+                    <strong>{{ site.author.name }}</strong>
+                    <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+                </address>
+                <img src="{{ url('theme://assets/images/logo-asb.svg') }}" alt="ASB Ortsverband Hamburg-Mitte e.V." width="234" height="98">
+            </div>
         </div>
     </footer>
 
