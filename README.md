@@ -20,8 +20,9 @@ GRAV_PORT=8080 docker compose up --build -d
 
 Beim ersten Aufruf von `/admin` führt Grav durch das Anlegen des
 Administrationskontos. Seiten einschließlich ihrer Bilder, die zentrale
-Mediathek, Konfiguration, Konten, Backups und Logs liegen in Docker-Volumes und
-bleiben auch beim Neuerstellen des Containers erhalten.
+Mediathek, allgemeine Uploads, Plugins, Konfiguration, Konten, Backups und Logs
+liegen in Docker-Volumes und bleiben auch beim Neuerstellen des Containers
+erhalten.
 
 ## Automatische Updates
 
@@ -37,8 +38,10 @@ Das Zeitlimit für den Download eines Grav-Core-Updates beträgt standardmäßig
 ## Struktur
 
 - `grav/user/config/`: Grav-System- und Website-Konfiguration
+- `grav/user/assets/`: allgemeine Upload-Ziele von Plugins und Blueprints
 - `grav/user/media/`: zentrale Grav-Mediathek und allgemeine Uploads
 - `grav/user/pages/`: Markdown-Inhalte
+- `grav/user/plugins/`: installierte und aktualisierte Grav-Plugins
 - `grav/user/themes/asb-hh-mitte/`: Twig-Templates und ASB-Assets
 
 Die Basisversion von Grav ist in `docker-compose.yml` auf `2.1.8` festgelegt
