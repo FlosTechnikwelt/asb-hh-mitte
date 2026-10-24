@@ -47,38 +47,119 @@
     <footer class="site-footer" id="kontakt">
         <div class="site-shell footer-grid">
             <nav class="footer-navigation" aria-label="Fußnavigation">
-                <section class="footer-column" aria-labelledby="footer-navigation-heading">
-                    <h2 id="footer-navigation-heading">Navigation</h2>
-                    <ul class="nav">
-                        <li><a href="{{ home_url }}">Startseite</a></li>
-                        {% for entry in pages.children.visible %}
-                            <li><a href="{{ entry.url }}">{{ entry.menu }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </section>
+                <div class="footer-column">
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/halle-15') }}">Halle 15</a></h2>
+                        <ul>
+                            <li><a href="{{ url('/halle-15/begegnungszentrum') }}">Begegnungszentrum</a></li>
+                            <li><a href="{{ url('/halle-15/flohmarkt') }}">Flohmarkt</a></li>
+                            <li><a href="{{ url('/halle-15/seniorenkaffee') }}">Seniorenkaffee</a></li>
+                            <li><a href="{{ url('/halle-15/pfadfinder') }}">Pfadfinder</a></li>
+                            <li><a href="{{ url('/halle-15/logistikzentrum') }}">Logistikzentrum</a></li>
+                        </ul>
+                    </section>
 
-                <section class="footer-column" aria-labelledby="footer-contact-heading">
-                    <h2 id="footer-contact-heading">Kontakt</h2>
-                    <ul class="nav">
-                        {% for item in site.footer_navigation %}
-                            <li><a href="{{ url(item.url) }}">{{ item.label }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </section>
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/gefluechtetenhilfe') }}">Geflüchtetenhilfe</a></h2>
+                        <ul>
+                            <li><a href="{{ url('/gefluechtetenhilfe/camp-schnackenburg') }}">Camp Schnackenburg</a></li>
+                            <li class="footer-indent"><a href="{{ url('/gefluechtetenhilfe/jugendarbeit') }}">Jugendarbeit</a></li>
+                            <li class="footer-indent"><a href="{{ url('/gefluechtetenhilfe/ausfluege-events') }}">Ausflüge/Events</a></li>
+                            <li class="footer-indent"><a href="{{ url('/gefluechtetenhilfe/soziale-begegnungen') }}">Soziale Begegnungen</a></li>
+                            <li class="footer-indent"><a href="{{ url('/gefluechtetenhilfe/sport') }}">Sport</a></li>
+                            <li class="footer-indent"><a href="{{ url('/gefluechtetenhilfe/jugendreisen') }}">Jugendreisen</a></li>
+                        </ul>
+                    </section>
 
-                <section class="footer-column" aria-labelledby="footer-legal-heading">
-                    <h2 id="footer-legal-heading">Rechtliches</h2>
-                    <ul class="nav">
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/tausch-und-schnack') }}">Tausch &amp; Schnack</a></h2>
+                        <ul>
+                            <li class="footer-indent"><a href="{{ url('/tausch-und-schnack/haushaltsartikelboerse') }}">Haushaltsartikelbörse</a></li>
+                            <li class="footer-indent"><a href="{{ url('/tausch-und-schnack/begegnungszentrum') }}">Begegnungszentrum</a></li>
+                        </ul>
+                    </section>
+
+                    <ul class="footer-standalone-links">
+                        <li><a href="{{ url('/sek-schoener-wohnen') }}">SEK Schöner Wohnen</a></li>
+                        <li><a href="{{ url('/unterkunftsvermittlung') }}">Unterkunftsvermittlung</a></li>
+                        <li><a href="{{ url('/tiernotruf') }}">Tiernotruf</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <ul class="footer-standalone-links footer-standalone-links--top">
+                        <li><a href="{{ url('/dolmetscher') }}">Dolmetscher</a></li>
+                        <li><a href="{{ url('/pausierende-projekte') }}">Pausierende Projekte</a></li>
+                    </ul>
+
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/auslandshilfe') }}">Auslandshilfe</a></h2>
+                        <ul>
+                            <li><a href="{{ url('/auslandshilfe/afrika') }}">Afrika</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/afrika/gambia') }}">Gambia</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/afrika/tansania') }}">Tansania</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/afrika/namibia') }}">Namibia</a></li>
+                            <li><a href="{{ url('/auslandshilfe/mittelamerika') }}">Mittelamerika</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/mittelamerika/haiti') }}">Haiti</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/mittelamerika/nicaragua') }}">Nicaragua</a></li>
+                            <li><a href="{{ url('/auslandshilfe/asien') }}">Asien</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/asien/russland') }}">Russland</a></li>
+                            <li><a href="{{ url('/auslandshilfe/europa') }}">Europa</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/europa/ukraine') }}">Ukraine</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/europa/lettland') }}">Lettland</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/europa/portugal') }}">Portugal</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/europa/armenien') }}">Armenien</a></li>
+                            <li class="footer-indent"><a href="{{ url('/auslandshilfe/europa/tuerkei-syrien') }}">Türkei/Syrien</a></li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="footer-column">
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/hilfe-fuer-hamburgerinnen') }}">Hilfe für Hamburger:innen</a></h2>
+                        <ul>
+                            <li><a href="{{ url('/hilfe-fuer-hamburgerinnen/kleiderkammer') }}">Kleiderkammer</a></li>
+                            <li><a href="{{ url('/hilfe-fuer-hamburgerinnen/sattmachermobil') }}">Sattmachermobil</a></li>
+                            <li><a href="{{ url('/hilfe-fuer-hamburgerinnen/hamburg-naeht') }}">Hamburg näht</a></li>
+                            <li><a href="{{ url('/halle-15') }}">Halle 15</a></li>
+                        </ul>
+                    </section>
+
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/hilf-mit') }}">Hilf mit!</a></h2>
+                        <ul>
+                            <li><a href="{{ url('/hilf-mit/geldspenden') }}">Geldspenden</a></li>
+                            <li><a href="{{ url('/hilf-mit/sachspenden') }}">Sachspenden</a></li>
+                            <li><a href="{{ url('/hilf-mit/mitmachen') }}">Mitmachen</a></li>
+                        </ul>
+                    </section>
+
+                    <section class="footer-group">
+                        <h2><a href="{{ url('/ueber-uns') }}">Über uns</a></h2>
+                        <ul>
+                            <li><a href="{{ url('/ueber-uns/vorstand') }}">Vorstand</a></li>
+                            <li><a href="{{ url('/ueber-uns/projektleitung') }}">Projektleitung</a></li>
+                            <li><a href="{{ url('/ueber-uns/presse') }}">Presse</a></li>
+                            <li><a href="{{ url('/ueber-uns/adresse-anfahrt') }}">Adresse/Anfahrt</a></li>
+                            <li><a href="{{ url('/ueber-uns/kontakt') }}">Kontakt-Formular</a></li>
+                        </ul>
+                    </section>
+
+                    <ul class="footer-legal-links">
                         <li><a href="{{ url('/legal/imprint') }}">Impressum</a></li>
                         <li><a href="{{ url('/legal/datenschutz') }}">Datenschutz</a></li>
                     </ul>
-                </section>
+                </div>
             </nav>
 
             <div class="footer-contact">
                 <address>
-                    <strong>{{ site.author.name }}</strong>
-                    <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+                    <strong>Arbeiter-Samariter-Bund<br>Ortsverband Hamburg-Mitte e.V.</strong>
+                    <span>Suurheid 20, Halle 15<br>22559 Hamburg</span>
+                    <span>
+                        Telefon: <a href="tel:+4940831131">040 831131</a><br>
+                        E-Mail: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+                    </span>
                 </address>
                 <img src="{{ url('theme://assets/images/logo-asb.svg') }}" alt="ASB Ortsverband Hamburg-Mitte e.V." width="234" height="98">
             </div>
