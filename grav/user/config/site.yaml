@@ -1,0 +1,17 @@
+title: 'ASB Hamburg-Mitte'
+default_lang: de
+
+author:
+  name: 'ASB Ortsverband Hamburg-Mitte e.V.'
+  email: 'ov-mitte@asb-hamburg.de'
+
+metadata:
+  description: 'Arbeiter-Samariter-Bund Ortsverband Hamburg-Mitte e.V.'
+
+taxonomies:
+  - tag
+  - author
+
+footer_navigation:
+  - label: Kontakt
+    url: 'mailto:ov-mitte@asb-hamburg.de'

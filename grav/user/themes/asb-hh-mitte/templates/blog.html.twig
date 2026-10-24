@@ -1,0 +1,17 @@
+{% extends 'partials/base.html.twig' %}
+{% set collection = page.collection() %}
+
+{% block content %}
+<section class="site-shell archive page-intro">
+    <h1>{{ page.title }}</h1>
+    {% if page.header.subtitle %}<p class="lead">{{ page.header.subtitle }}</p>{% endif %}
+    {% if page.content|striptags|trim %}<div class="page-content">{{ page.content|raw }}</div>{% endif %}
+</section>
+<section class="site-shell archive-content" aria-label="Beiträge">
+    {% for child in collection %}
+        {% include 'partials/card.html.twig' with {card: child} %}
+    {% else %}
+        <p>Noch keine Beiträge vorhanden.</p>
+    {% endfor %}
+</section>
+{% endblock %}

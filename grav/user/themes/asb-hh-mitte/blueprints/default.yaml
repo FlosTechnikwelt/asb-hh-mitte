@@ -1,0 +1,34 @@
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            header.subtitle:
+              type: text
+              label: Untertitel
+            header.hero_image:
+              type: filepicker
+              folder: self@
+              label: Titelbild
+              preview_images: true
+              accept:
+                - image/*
+            header.hero_alt:
+              type: text
+              label: Alternativtext des Titelbilds
+            header.hero_image_url:
+              type: url
+              label: Externe Titelbild-URL
+            header.show_title:
+              type: toggle
+              label: Seitentitel anzeigen
+              default: 1
+              highlight: 1
+              options:
+                1: Ja
+                0: Nein
+              validate:
+                type: bool

@@ -1,0 +1,24 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set feature_image = page.header.hero_image ? page.media.images[page.header.hero_image] : page.media.images|first %}
+{% set feature_image_url = feature_image ? feature_image.url : page.header.hero_image_url %}
+
+{% block content %}
+<article class="site-shell article page-article">
+    {% if page.header.show_title is not same as(false) %}
+        <div class="article-hero{{ feature_image_url ? '' : ' article-hero--text' }}">
+            {% if feature_image_url %}
+                <figure class="article-hero-image">
+                    <img src="{{ feature_image_url }}" alt="{{ page.header.hero_alt ?: page.title }}" fetchpriority="high">
+                </figure>
+            {% endif %}
+            <header class="article-header">
+                <span class="eyebrow article-eyebrow">{{ site.title }}</span>
+                <h1>{{ page.title }}</h1>
+                {% if page.header.subtitle %}<p class="lead">{{ page.header.subtitle }}</p>{% endif %}
+            </header>
+        </div>
+    {% endif %}
+    <div class="article-body page-content">{{ page.content|raw }}</div>
+</article>
+{% endblock %}

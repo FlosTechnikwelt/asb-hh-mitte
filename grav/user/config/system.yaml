@@ -1,0 +1,46 @@
+home:
+  alias: /home
+
+pages:
+  theme: asb-hh-mitte
+  order:
+    by: default
+    dir: asc
+  dateformat:
+    default: 'Y-m-d H:i'
+    short: 'd.m.Y'
+    long: 'd. F Y'
+  process:
+    markdown: true
+    twig: false
+
+languages:
+  supported:
+    - de
+  default_lang: de
+  include_default_lang: false
+
+cache:
+  enabled: true
+  check:
+    method: file
+
+assets:
+  css_pipeline: false
+  js_pipeline: false
+  enable_asset_timestamp: true
+
+errors:
+  display: false
+  log: true
+
+debugger:
+  enabled: false
+
+gpm:
+  releases: stable
+  verify_peer: true
+
+updates:
+  safe_upgrade: true
+  safe_upgrade_snapshot_limit: 5

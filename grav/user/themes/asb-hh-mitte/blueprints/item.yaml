@@ -1,0 +1,14 @@
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            header.author:
+              type: text
+              label: Autor
+            header.hero_caption:
+              type: text
+              label: Bildunterschrift

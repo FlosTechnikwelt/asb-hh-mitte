@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="{{ grav.language.getActive ?: site.default_lang ?: 'de' }}">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#000000">
+        <title>{% if page.title and page.route != home_url %}{{ page.title|e }} · {% endif %}{{ site.title|e }}</title>
+        {% include 'partials/metadata.html.twig' %}
+        <link rel="canonical" href="{{ page.url(true, true) }}">
+        <link rel="icon" type="image/svg+xml" href="{{ url('theme://assets/images/logo-asb.svg') }}">
+        {% do assets.addCss('theme://assets/css/screen.css', 100) %}
+        {% do assets.addJs('theme://assets/js/site.js', {group: 'bottom', priority: 100}) %}
+        {{ assets.css()|raw }}
+        {{ assets.js()|raw }}
+    {% endblock %}
+</head>
+<body class="template-{{ page.template|e('html_attr') }}">
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+    <header class="site-header">
+        <div class="site-shell header-grid">
+            <a class="brand" href="{{ home_url }}" aria-label="{{ site.title|e('html_attr') }} – Startseite">
+                <img src="{{ url('theme://assets/images/logo-asb.svg') }}" alt="Arbeiter-Samariter-Bund Ortsverband Hamburg-Mitte e.V." width="234" height="98">
+            </a>
+
+            <div class="header-navigation">
+                <nav class="utility-nav" aria-label="Direktzugänge">
+                    <a href="mailto:{{ site.author.email }}">Kontakt</a>
+                </nav>
+
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Menü öffnen">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <nav class="main-nav" id="site-navigation" aria-label="Hauptnavigation">
+                    {% include 'partials/navigation.html.twig' %}
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer" id="kontakt">
+        <div class="site-shell footer-grid">
+            <div class="footer-brand">
+                <img src="{{ url('theme://assets/images/logo-asb.svg') }}" alt="ASB Ortsverband Hamburg-Mitte e.V." width="234" height="98">
+                <strong>{{ site.title }}</strong>
+                {% if site.metadata.description %}<p>{{ site.metadata.description }}</p>{% endif %}
+            </div>
+            <nav class="footer-navigation" aria-label="Fußnavigation">
+                <ul class="nav">
+                    {% for item in site.footer_navigation %}
+                        <li class="nav-item"><a href="{{ url(item.url) }}">{{ item.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <small>© {{ 'now'|date('Y') }} {{ site.title }}</small>
+        </div>
+    </footer>
+
+    {{ assets.js('bottom')|raw }}
+</body>
+</html>

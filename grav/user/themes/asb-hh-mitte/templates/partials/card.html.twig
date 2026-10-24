@@ -1,0 +1,16 @@
+{% set card_image = card.header.hero_image ? card.media.images[card.header.hero_image] : card.media.images|first %}
+{% set card_image_url = card_image ? card_image.cropZoom(800, 540).url : card.header.hero_image_url %}
+<article class="post-card">
+    <a class="post-card-link" href="{{ card.url }}">
+        {% if card_image_url %}
+            <img class="post-card-image" src="{{ card_image_url }}" alt="{{ card.header.hero_alt ?: card.title }}" loading="lazy">
+        {% else %}
+            <span class="post-card-placeholder" aria-hidden="true">ASB <span>HH MITTE</span></span>
+        {% endif %}
+        <div class="post-card-content">
+            {% if card.date %}<time datetime="{{ card.date|date('Y-m-d') }}">{{ card.date|date('d.m.Y') }}</time>{% endif %}
+            <h2>{{ card.title }}</h2>
+            <p>{{ card.summary|striptags|slice(0, 180) }}{% if card.summary|striptags|length > 180 %}…{% endif %}</p>
+        </div>
+    </a>
+</article>

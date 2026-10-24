@@ -1,0 +1,27 @@
+name: ASB Hamburg-Mitte
+slug: asb-hh-mitte
+type: theme
+version: 1.0.0
+description: 'Grav-Theme des ASB Ortsverbands Hamburg-Mitte.'
+icon: universal-access
+author:
+  name: Grassau GmbH (Florian Linde)
+  email: florian.linde@grassau.com
+license: MIT
+compatibility:
+  grav:
+    - '2.1'
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: Theme aktiv
+      highlight: 1
+      default: 1
+      options:
+        1: Ja
+        0: Nein
+      validate:
+        type: bool

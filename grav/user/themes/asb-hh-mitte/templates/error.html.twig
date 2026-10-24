@@ -1,0 +1,9 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+<section class="site-shell error-page">
+    <h1>{{ page.title ?: 'Seite nicht gefunden' }}</h1>
+    <div class="page-content">{{ page.content|raw }}</div>
+    <a class="button" href="{{ home_url }}">Zur Startseite</a>
+</section>
+{% endblock %}

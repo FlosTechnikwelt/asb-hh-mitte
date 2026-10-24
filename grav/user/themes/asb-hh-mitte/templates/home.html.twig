@@ -1,0 +1,14 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% if page.content|striptags|trim %}
+    <article class="site-shell home-editor">
+        <div class="page-content">{{ page.content|raw }}</div>
+    </article>
+{% else %}
+    <header class="site-shell home-placeholder">
+        <h1>{{ site.title }}</h1>
+        {% if site.metadata.description %}<p>{{ site.metadata.description }}</p>{% endif %}
+    </header>
+{% endif %}
+{% endblock %}

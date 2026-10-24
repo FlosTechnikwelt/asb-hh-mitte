@@ -1,0 +1,13 @@
+{% macro nav_loop(parent) %}
+    {% for entry in parent.children.visible %}
+        {% set active = entry.active or entry.activeChild %}
+        <li class="nav-item nav-{{ entry.slug }}{{ active ? ' nav-current' : '' }}">
+            <a href="{{ entry.url }}"{{ active ? ' aria-current="page"' : '' }}>{{ entry.menu }}</a>
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as navigation %}
+<ul class="nav">
+    {{ navigation.nav_loop(pages) }}
+</ul>

@@ -1,0 +1,31 @@
+{% extends 'partials/base.html.twig' %}
+{% set feature_image = page.header.hero_image ? page.media.images[page.header.hero_image] : page.media.images|first %}
+{% set feature_image_url = feature_image ? feature_image.url : page.header.hero_image_url %}
+
+{% block content %}
+<article class="site-shell article">
+    <div class="article-hero{{ feature_image_url ? '' : ' article-hero--text' }}">
+        {% if feature_image_url %}
+            <figure class="article-hero-image">
+                <img src="{{ feature_image_url }}" alt="{{ page.header.hero_alt ?: page.title }}" fetchpriority="high">
+                {% if page.header.hero_caption %}<figcaption>{{ page.header.hero_caption }}</figcaption>{% endif %}
+            </figure>
+        {% endif %}
+        <header class="article-header">
+            {% if page.taxonomy.tag %}<span class="eyebrow article-eyebrow">{{ page.taxonomy.tag|first }}</span>{% endif %}
+            <h1>{{ page.title }}</h1>
+            {% if page.header.subtitle %}<p class="lead">{{ page.header.subtitle }}</p>{% endif %}
+            <div class="article-meta">
+                <time datetime="{{ page.date|date('Y-m-d') }}">{{ page.date|date('d.m.Y') }}</time>
+                {% if page.header.author %}<span>· {{ page.header.author }}</span>{% endif %}
+            </div>
+        </header>
+    </div>
+    <div class="article-body page-content">{{ page.content|raw }}</div>
+    {% if page.taxonomy.tag %}
+        <footer class="article-tags">
+            {% for tag in page.taxonomy.tag %}<span>{{ tag }}</span>{% endfor %}
+        </footer>
+    {% endif %}
+</article>
+{% endblock %}
