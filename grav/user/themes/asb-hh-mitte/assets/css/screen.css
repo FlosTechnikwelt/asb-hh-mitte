@@ -531,9 +531,8 @@ strong {
 
 .footer-contact img {
     width: 100%;
+    height: auto;
     margin-top: 24px;
-    padding: 15px;
-    background: var(--asb-white);
 }
 
 /* Text pages and imported editor content */
@@ -1185,7 +1184,6 @@ strong {
     .footer-contact img {
         min-width: 0;
         margin-top: 0;
-        padding: 10px;
     }
 
     .home-editor {
