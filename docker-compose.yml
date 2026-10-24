@@ -3,6 +3,7 @@ services:
     build:
       context: .
       args:
+        PHP_VERSION: ${PHP_VERSION:-8.5}
         GRAV_VERSION: ${GRAV_VERSION:-2.1.8}
     restart: unless-stopped
     ports:

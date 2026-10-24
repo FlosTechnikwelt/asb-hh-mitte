@@ -32,4 +32,45 @@ if [ "$#" -eq 0 ]; then
     set -- apache2-foreground
 fi
 
+if [ "$1" = "apache2-foreground" ]; then
+    cron_path='PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    cron_line='* * * * * cd /var/www/html;/usr/local/bin/php bin/grav scheduler 1>> /dev/null 2>&1'
+    temporary_crontab="$(mktemp)"
+
+    crontab -u www-data -l 2>/dev/null \
+        | grep -Fv 'bin/grav scheduler' > "$temporary_crontab" || true
+    if ! grep -Fqx "$cron_path" "$temporary_crontab"; then
+        printf '%s\n' "$cron_path" >> "$temporary_crontab"
+    fi
+    printf '%s\n' "$cron_line" >> "$temporary_crontab"
+    crontab -u www-data "$temporary_crontab"
+    rm -f "$temporary_crontab"
+
+    echo "[grav-scheduler] Crontab für www-data installiert; starte Cron-Daemon."
+    cron -f &
+    cron_pid="$!"
+
+    docker-php-entrypoint "$@" &
+    apache_pid="$!"
+
+    shutdown() {
+        trap - INT TERM
+        kill -TERM "$apache_pid" "$cron_pid" 2>/dev/null || true
+        wait "$apache_pid" "$cron_pid" 2>/dev/null || true
+        exit 0
+    }
+
+    trap shutdown INT TERM
+
+    while kill -0 "$apache_pid" 2>/dev/null && kill -0 "$cron_pid" 2>/dev/null; do
+        sleep 5 &
+        wait "$!"
+    done
+
+    echo "[grav-scheduler] WARNUNG: Apache oder Cron wurde unerwartet beendet; Container wird neu gestartet." >&2
+    kill -TERM "$apache_pid" "$cron_pid" 2>/dev/null || true
+    wait "$apache_pid" "$cron_pid" 2>/dev/null || true
+    exit 1
+fi
+
 exec docker-php-entrypoint "$@"
