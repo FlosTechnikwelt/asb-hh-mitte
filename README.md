@@ -24,6 +24,23 @@ Mediathek, allgemeine Uploads, Plugins, Konfiguration, Konten, Backups und Logs
 liegen in Docker-Volumes und bleiben auch beim Neuerstellen des Containers
 erhalten.
 
+## Scheduler
+
+Der Grav-Container betreibt neben Apache einen Cron-Daemon, der den Grav
+Scheduler jede Minute als Benutzer `www-data` aufruft. Damit werden aktivierte
+Grav-Jobs wie Cache-Bereinigung und Backups automatisch zu ihren konfigurierten
+Zeiten ausgeführt. Da Cron im selben Container läuft, verwendet er denselben
+Grav-Core, dieselben Plugins und denselben Cache. Die Grav-Administration kann
+den installierten Cron-Eintrag ebenfalls direkt erkennen.
+
+Der Scheduler-Status und die Ausführungszeiten lassen sich mit folgenden
+Befehlen kontrollieren:
+
+```sh
+docker compose exec -u www-data grav crontab -l
+docker compose exec -u www-data grav php bin/grav scheduler -d
+```
+
 ## Automatische Updates
 
 Bei jedem Containerstart prüft `docker/grav-entrypoint.sh` zuerst Grav Core und
@@ -34,6 +51,20 @@ geschrieben und die Website trotzdem gestartet.
 
 Das Zeitlimit für den Download eines Grav-Core-Updates beträgt standardmäßig
 120 Sekunden und kann bei Bedarf über `GRAV_UPDATE_TIMEOUT` geändert werden.
+
+## PHP
+
+Das Image verwendet standardmäßig die aktuelle PHP-8.5-Reihe und enthält
+neben den erforderlichen Modulen auch die empfohlenen Linux-Erweiterungen
+`yaml`, `apcu`, `memcache`, `memcached` und `redis`. `curl` ist ebenfalls aktiv.
+Die PHP-Reihe kann beim Build bei Bedarf über `PHP_VERSION` gesetzt werden.
+
+Da das letzte stabile PECL-Paket von `memcache` PHP 8.5 noch nicht unterstützt,
+wird eine fest gepinnte Revision aus dem offiziellen `pecl-memcache`-Repository
+gebaut.
+
+`WinCache` wird nicht installiert, weil diese Erweiterung ausschließlich für
+PHP auf Windows beziehungsweise Windows Server vorgesehen ist.
 
 ## Struktur
 

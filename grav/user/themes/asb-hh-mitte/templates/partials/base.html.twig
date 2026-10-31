@@ -1,5 +1,14 @@
 <!doctype html>
 <html lang="{{ grav.language.getActive ?: site.default_lang ?: 'de' }}">
+<!--
+     _    ____  ____    _   _                 _                       __  __ _ _   _       
+    / \  / ___|| __ )  | | | | __ _ _ __ ___ | |__  _   _ _ __ __ _  |  \/  (_) |_| |_ ___ 
+   / _ \ \___ \|  _ \  | |_| |/ _` | '_ ` _ \| '_ \| | | | '__/ _` | | |\/| | | __| __/ _ \
+  / ___ \ ___) | |_) | |  _  | (_| | | | | | | |_) | |_| | | | (_| | | |  | | | |_| ||  __/
+ /_/   \_\____/|____/  |_| |_|\__,_|_| |_| |_|_.__/ \__,_|_|  \__, | |_|  |_|_|\__|\__\___|
+                                                              |___/                        
+asb-hh-mitte.de / it@asb-hh-mitte.de
+-->
 <head>
     {% block head %}
         <meta charset="utf-8">
@@ -26,7 +35,7 @@
 
             <div class="header-navigation">
                 <nav class="utility-nav" aria-label="Direktzugänge">
-                    <a href="mailto:{{ site.author.email }}">Kontakt</a>
+                    <a href="/kontakt-und-service">Kontakt & Service</a>
                 </nav>
 
                 <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Menü öffnen">
@@ -92,7 +101,7 @@
                             <li><a href="{{ url('/asb-dorf/ehrenamt-und-bevoelkerungsschutz') }}">Ehrenamt und Bevölkerungsschutz</a></li>
                             <li><a href="{{ url('/asb-dorf/nachhaltige-weiternutzung') }}">Nachhaltige Weiternutzung der Gebäude</a></li>
                             <li><a href="{{ url('/asb-dorf/projektstand') }}">Aktueller Projektstand</a></li>
-                            <li><a href="https://asb-dorf.de" target="_blank" rel="noopener noreferrer">Eigene Website: asb-dorf.de</a></li>
+                            <li><a href="https://portal.asb-dorf.de" target="_blank" rel="noopener noreferrer">Mieterportal: portal.asb-dorf.de</a></li>
                         </ul>
                     </section>
 
@@ -168,3 +177,15 @@
     {{ assets.js('bottom')|raw }}
 </body>
 </html>
+<!--
+   _____                                  _____           _     _    _ 
+  / ____|                                / ____|         | |   | |  | |
+ | |  __ _ __ __ _ ___ ___  __ _ _   _  | |  __ _ __ ___ | |__ | |__| |
+ | | |_ | '__/ _` / __/ __|/ _` | | | | | | |_ | '_ ` _ \| '_ \|  __  |
+ | |__| | | | (_| \__ \__ \ (_| | |_| | | |__| | | | | | | |_) | |  | |
+  \_____|_|  \__,_|___/___/\__,_|\__,_|  \_____|_| |_| |_|_.__/|_|  |_|
+                                                                       
+ Wenn du das gefunden hast, bist du den meisten einen Schritt voraus, bewerbe dich doch bei uns.
+ Ihr 24/7 IT-Systemhaus im Hamburger Westen für IT in ganz Deutschland. 
+ Kontaktie uns unter info@grassau.com oder +49 40 812 000 rund um die Uhr.
+-->

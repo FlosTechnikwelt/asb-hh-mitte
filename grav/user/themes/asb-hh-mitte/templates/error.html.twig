@@ -1,9 +1,44 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-<section class="site-shell error-page">
-    <h1>{{ page.title ?: 'Seite nicht gefunden' }}</h1>
-    <div class="page-content">{{ page.content|raw }}</div>
-    <a class="button" href="{{ home_url }}">Zur Startseite</a>
+{% set error_code = page.header.http_response_code|default(404) %}
+{% set error_title = error_code == 404 ? 'Hier geht’s gerade nicht weiter.' : (page.title ?: 'Da ist etwas schiefgelaufen.') %}
+<section class="site-shell error-page" aria-labelledby="error-title">
+    <div class="error-page__card">
+        <div class="error-page__copy">
+            <p class="error-page__eyebrow">Fehler {{ error_code }}</p>
+            <h1 id="error-title">{{ error_title }}</h1>
+
+            {% if error_code == 404 %}
+                <p class="error-page__lead">Die gesuchte Seite ist umgezogen, macht gerade Pause oder hat nie existiert.</p>
+            {% elseif page.content %}
+                <div class="error-page__content">{{ page.content|raw }}</div>
+            {% else %}
+                <p class="error-page__lead">Bitte versuche es gleich noch einmal oder kehre zur Startseite zurück.</p>
+            {% endif %}
+
+            <nav class="error-page__actions" aria-label="Weiterführende Links">
+                <a class="button button--primary" href="{{ home_url }}">
+                    <span>Zur Startseite</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+                <a class="button button--secondary" href="{{ url('/kontakt-und-service') }}">Kontakt &amp; Service</a>
+            </nav>
+        </div>
+
+        <div class="error-page__visual" aria-hidden="true">
+            <div class="error-page__route">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="error-page__sign">
+                <span class="error-page__code">{{ error_code }}</span>
+                <span class="error-page__sign-label">Falsche Abzweigung</span>
+            </div>
+            <span class="error-page__marker error-page__marker--one">+</span>
+            <span class="error-page__marker error-page__marker--two">+</span>
+        </div>
+    </div>
+
+    <p class="error-page__hint">Keine Sorge: Hilfe ist nur einen Klick entfernt.</p>
 </section>
 {% endblock %}

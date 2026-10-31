@@ -1,3 +1,8 @@
+/* ==========================================================================
+   ASB Hamburg Mitte Theme
+   ========================================================================== 
+   Made by Grassau GmbH, FL01, info@grassau.com, +49 40 812 000
+*/
 :root {
     color-scheme: light;
     --asb-red: #c80a14;
@@ -909,14 +914,198 @@ strong {
 }
 
 .error-page {
-    min-height: 55vh;
-    padding: 50px 0 100px;
+    min-height: 62vh;
+    padding: 42px 0 110px;
 }
 
-.error-page p {
-    max-width: 680px;
-    margin: 22px 0 28px;
-    font-size: 22px;
+.error-page__card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+    min-height: 530px;
+    overflow: hidden;
+    border: var(--border) solid var(--asb-red);
+    background: var(--asb-yellow);
+    box-shadow: 14px 14px 0 var(--asb-red);
+}
+
+.error-page__copy {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(36px, 6vw, 72px);
+}
+
+.error-page__eyebrow {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 0 0 18px;
+    border: 3px solid var(--asb-red);
+    padding: 6px 10px 5px;
+    background: var(--asb-white);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+}
+
+.error-page h1 {
+    max-width: 700px;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: .92;
+    text-wrap: balance;
+}
+
+.error-page__content,
+.error-page__lead {
+    max-width: 620px;
+    margin-top: 25px;
+    font-size: clamp(19px, 2vw, 23px);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.error-page__content > * + * {
+    margin-top: 12px;
+}
+
+.error-page__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.error-page__actions .button {
+    display: inline-flex;
+    gap: 22px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.error-page__visual {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    border-left: var(--border) solid var(--asb-red);
+    background: var(--asb-red);
+}
+
+.error-page__visual::before,
+.error-page__visual::after {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--asb-yellow);
+    content: "";
+}
+
+.error-page__visual::before {
+    width: 310px;
+    height: 310px;
+    top: -145px;
+    right: -110px;
+}
+
+.error-page__visual::after {
+    width: 170px;
+    height: 170px;
+    bottom: -88px;
+    left: -60px;
+}
+
+.error-page__sign {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: min(300px, 72%);
+    border: 5px solid var(--asb-red);
+    padding: 28px 24px 24px;
+    background: var(--asb-white);
+    box-shadow: 12px 12px 0 var(--asb-yellow);
+    text-align: center;
+    transform: translate(-50%, -50%) rotate(4deg);
+}
+
+.error-page__sign::before {
+    position: absolute;
+    top: -19px;
+    left: 50%;
+    width: 26px;
+    height: 26px;
+    border: 5px solid var(--asb-red);
+    border-radius: 50%;
+    background: var(--asb-yellow);
+    content: "";
+    transform: translateX(-50%);
+}
+
+.error-page__code {
+    display: block;
+    font-size: clamp(92px, 12vw, 150px);
+    font-weight: 700;
+    letter-spacing: -.09em;
+    line-height: .75;
+}
+
+.error-page__sign-label {
+    display: block;
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.error-page__route {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    transform: rotate(-24deg) scale(1.2);
+}
+
+.error-page__route span {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--asb-white);
+}
+
+.error-page__route span:nth-child(1) { top: 18%; left: 7%; }
+.error-page__route span:nth-child(2) { top: 32%; left: 22%; }
+.error-page__route span:nth-child(3) { top: 48%; left: 8%; }
+.error-page__route span:nth-child(4) { top: 65%; left: 21%; }
+.error-page__route span:nth-child(5) { top: 80%; left: 8%; }
+
+.error-page__marker {
+    position: absolute;
+    z-index: 3;
+    color: var(--asb-yellow);
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.error-page__marker--one {
+    top: 9%;
+    left: 9%;
+    transform: rotate(12deg);
+}
+
+.error-page__marker--two {
+    right: 8%;
+    bottom: 7%;
+    transform: rotate(-9deg);
+}
+
+.error-page__hint {
+    margin: 27px 0 0 19px;
+    font-size: 16px;
     font-weight: 700;
 }
 
@@ -926,6 +1115,39 @@ strong {
     padding: 11px 18px;
     background: var(--asb-yellow);
     font-weight: 700;
+}
+
+.button--primary {
+    background: var(--asb-red);
+    color: var(--asb-white);
+}
+
+.button--secondary {
+    background: transparent;
+}
+
+.error-page__actions .button:hover {
+    text-decoration: none;
+    transform: translateY(-3px);
+}
+
+.error-page__actions .button:active {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .error-page__actions .button {
+        transition: transform 160ms ease;
+    }
+
+    .error-page__sign {
+        animation: error-sign-float 4s ease-in-out infinite;
+    }
+
+    @keyframes error-sign-float {
+        0%, 100% { transform: translate(-50%, -50%) rotate(4deg); }
+        50% { transform: translate(-50%, calc(-50% - 8px)) rotate(2deg); }
+    }
 }
 
 @media (max-width: 1000px) {
@@ -961,6 +1183,10 @@ strong {
 
     .footer-grid {
         gap: 36px;
+    }
+
+    .error-page__card {
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
     }
 }
 
@@ -1220,6 +1446,65 @@ strong {
     .page-intro h1,
     .error-page h1 {
         font-size: 38px;
+    }
+
+    .error-page {
+        padding: 18px 0 75px;
+    }
+
+    .error-page__card {
+        grid-template-columns: 1fr;
+        box-shadow: 7px 7px 0 var(--asb-red);
+    }
+
+    .error-page__copy {
+        padding: 34px 24px 38px;
+    }
+
+    .error-page__eyebrow {
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+
+    .error-page__content,
+    .error-page__lead {
+        margin-top: 18px;
+        font-size: 18px;
+    }
+
+    .error-page__actions {
+        display: grid;
+        margin-top: 27px;
+    }
+
+    .error-page__actions .button {
+        width: 100%;
+    }
+
+    .error-page__visual {
+        min-height: 310px;
+        border-top: var(--border) solid var(--asb-red);
+        border-left: 0;
+    }
+
+    .error-page__sign {
+        width: min(250px, 65%);
+        padding: 24px 20px 20px;
+        box-shadow: 8px 8px 0 var(--asb-yellow);
+    }
+
+    .error-page__code {
+        font-size: 94px;
+    }
+
+    .error-page__sign-label {
+        margin-top: 19px;
+        font-size: 13px;
+    }
+
+    .error-page__hint {
+        margin: 20px 8px 0;
+        font-size: 14px;
     }
 
     .article-header .lead,
